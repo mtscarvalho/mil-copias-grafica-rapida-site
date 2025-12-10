@@ -6,8 +6,6 @@ import { Exo, Figtree } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
-import { WhatsAppDialogProvider } from "@/providers/whatsapp-dialog";
-
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 
@@ -33,11 +31,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="pt-BR">
       <body className={`${figtree.variable} ${exo.variable} antialiased`}>
-        <NextTopLoader color="var(--color-blue-600)" />
+        <NextTopLoader color="var(--color-red-700)" />
         <Header />
-
-        <WhatsAppDialogProvider>{children}</WhatsAppDialogProvider>
-
+        {children}
         {process.env.NEXT_PUBLIC_ENV === "production" && <GoogleTagManager gtmId="GTM-" />}
         <Footer />
       </body>
