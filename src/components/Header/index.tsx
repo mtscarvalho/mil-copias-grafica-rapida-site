@@ -1,53 +1,47 @@
 import Link from "next/link";
 
 import { Button } from "@/components/Button";
-
-import { fetchAllCases } from "@/collections/Cases/data";
-import { fetchAllServices } from "@/collections/Services/data";
-import { Menu } from "../Menu";
-
-type TMenuItem = {
-  label: string;
-  href?: string;
-  external?: boolean;
-};
-
-export type TMenu = {
-  submenu?: TMenuItem[];
-} & TMenuItem;
+import { contactWhatsAppUrl, quoteWhatsAppUrl } from "@/utilities/generate-whatsapp-link";
+import { MilCopias } from "../MilCopias";
+import { WhatsApp } from "../SocialIcon";
 
 export async function Header() {
-  const services = await fetchAllServices();
-  const cases = await fetchAllCases();
-
-  const servicesMenuItems = services.map((service) => ({
-    label: service.title,
-    href: service.relPermalink,
-  }));
-
-  const casesMenuItems = cases.map((service) => ({
-    label: service.title,
-    href: service.relPermalink,
-  }));
-
-  const menu: TMenu[] = [
-    { label: "Início", href: "/" },
-    {
-      label: "Soluções",
-      submenu: [...servicesMenuItems],
-    },
-    {
-      label: "Casos de sucesso",
-      submenu: [...casesMenuItems],
-    },
-    { label: "Área do cliente", href: "/area-do-cliente" },
-  ];
   return (
     <header>
       <Button variant="primary" size="md" className="skip-to-main" asChild>
         <Link href="#conteudo">Pular para o conteúdo</Link>
       </Button>
-      <Menu items={menu} />
+      <div className="absolute top-0 left-0 z-10 h-auto w-full overflow-auto py-6 sm:px-6 sm:py-12">
+        <div className="container h-full py-2.5">
+          <div className="flex w-full items-center justify-between">
+            <MilCopias className="w-full max-w-[234px]" />
+            <nav className="shrink-0 max-md:hidden">
+              <ul className="flex gap-2">
+                <li className="mb-2 lg:mb-0">
+                  <Button size="md" variant="ghost" asChild>
+                    <Link href="#tipos-de-materiais">Tipos de materiais</Link>
+                  </Button>
+                </li>
+                <li className="mb-2 lg:mb-0">
+                  <Button size="md" variant="outline" asChild>
+                    <Link href={contactWhatsAppUrl} target="_blank" rel="noopener noreferrer">
+                      Contato
+                    </Link>
+                  </Button>
+                </li>
+                <li className="mb-2 lg:mb-0">
+                  <Button size="md" asChild>
+                    <Link href={quoteWhatsAppUrl} target="_blank" rel="noopener noreferrer">
+                      <WhatsApp />
+                      Solicitar orçamento
+                    </Link>
+                  </Button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

@@ -2,17 +2,13 @@
 
 import { useState } from "react";
 
-import { servedCities, unservedCities } from "@/lib/cities";
 import { formatPhone } from "@/utilities/format-phone";
 import { CheckCircle, Loader, XCircle } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../Button";
 import { Input } from "../ui/input";
-import { NativeSelect, NativeSelectOptGroup, NativeSelectOption } from "../ui/native-select";
+import { NativeSelect, NativeSelectOption } from "../ui/native-select";
 import { Textarea } from "../ui/textarea";
-
-import { useServices } from "@/contexts/ServicesContext";
-import { Service } from "@/payload-types";
 
 type ContactForm = {
   type: "contact" | "whatsapp";
@@ -54,7 +50,7 @@ const initialFormState: FormState = {
   honeypot: "",
 };
 
-function buildWhatsAppMessage(formData: FormState, services: Service[]) {
+function buildWhatsAppMessage(formData: FormState, services: any[]) {
   const selectedService = services.find((service) => service.slug === formData.solution);
   const solutionName = selectedService?.title ?? formData.solution;
 
@@ -81,7 +77,7 @@ function buildWhatsAppMessage(formData: FormState, services: Service[]) {
   return message.trim();
 }
 
-function buildWhatsAppUrl(formData: FormState, services: Service[]) {
+function buildWhatsAppUrl(formData: FormState, services: any[]) {
   const numeroWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "5599999999999"; // coloque o número no env
   const mensagem = buildWhatsAppMessage(formData, services);
   const encoded = encodeURIComponent(mensagem);
@@ -90,7 +86,7 @@ function buildWhatsAppUrl(formData: FormState, services: Service[]) {
 }
 
 export function ContactForm({ type }: ContactForm) {
-  const services = useServices();
+  //   const services = useServices();
 
   const [formData, setFormData] = useState<FormState>(initialFormState);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -142,10 +138,10 @@ export function ContactForm({ type }: ContactForm) {
       }
 
       if (type === "whatsapp") {
-        const whatsappUrl = buildWhatsAppUrl(formData, services);
+        // const whatsappUrl = buildWhatsAppUrl(formData, services);
         resetForm();
         setSuccessMessage("Mensagem enviada com sucesso!");
-        window.open(whatsappUrl, "_blank");
+        // window.open(whatsappUrl, "_blank");
       } else {
         resetForm();
         setSuccessMessage("Mensagem enviada com sucesso!");
@@ -167,7 +163,7 @@ export function ContactForm({ type }: ContactForm) {
       <div className="grid gap-x-4 gap-y-3 lg:grid-cols-2">
         <div className="flex flex-col gap-1.5 lg:col-span-2">
           <label htmlFor="city">Cidade</label>
-          <NativeSelect id="city" name="city" onChange={handleChange} required>
+          {/* <NativeSelect id="city" name="city" onChange={handleChange} required>
             <NativeSelectOption value="">Selecione</NativeSelectOption>
             <NativeSelectOptGroup label="Cidades que atendemos">
               {servedCities.map((city) => (
@@ -183,7 +179,7 @@ export function ContactForm({ type }: ContactForm) {
                 </NativeSelectOption>
               ))}
             </NativeSelectOptGroup>
-          </NativeSelect>
+          </NativeSelect> */}
           <p className="text-secondary mb-1 text-xs text-pretty">*Atendemos em um raio de até 130 km a partir da cidade de Linhares, abrangendo quase todo o território do estado do Espírito Santo.</p>
         </div>
 
@@ -209,14 +205,14 @@ export function ContactForm({ type }: ContactForm) {
 
         <div className="flex flex-col gap-1.5 lg:col-span-2">
           <label htmlFor="solution">Solução de interesse</label>
-          <NativeSelect id="solution" name="solution" onChange={handleChange} required>
+          {/* <NativeSelect id="solution" name="solution" onChange={handleChange} required>
             <NativeSelectOption value="">Selecione</NativeSelectOption>
             {services.map((service: Service) => (
               <NativeSelectOption key={service.id} value={service.slug!}>
                 {service.title}
               </NativeSelectOption>
             ))}
-          </NativeSelect>
+          </NativeSelect> */}
         </div>
 
         {formData.solution === "aluguel-de-impressora-multifuncional" && (

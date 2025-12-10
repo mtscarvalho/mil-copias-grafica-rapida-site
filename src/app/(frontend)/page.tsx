@@ -1,15 +1,11 @@
 import { createMetadata } from "@/utilities/create-metadata";
 
-import { fetchAllServiceCategories } from "@/collections/ServiceCategories/data";
 import { Button } from "@/components/Button";
-import { ServiceCategoryCard } from "@/components/ServiceCategoryCard";
 
-import { CallToAction } from "@/sections/CallToAction";
-import { ContentWithDivider, ContentWithDividerContent } from "@/sections/ContentWithDivider";
-
-import BoxedSection from "@/components/BoxedSection";
-import { Customers } from "@/components/Customers";
-import { ArrowUpRight, ChartPie, HandCoins, Handshake, Headset, PiggyBank, RotateCcw } from "lucide-react";
+import GraficaRapida from "@/components/GraficaRapida";
+import { WhatsApp } from "@/components/SocialIcon";
+import { contactWhatsAppUrl, quoteWhatsAppUrl } from "@/utilities/generate-whatsapp-link";
+import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,118 +18,177 @@ export function generateMetadata() {
 }
 
 export default async function Page() {
-  const categories = await fetchAllServiceCategories();
+  const service = [
+    {
+      title: "Serviços de impressão, cópias e finalização de documentos",
+      list: ["Impressões e cópias a laser (coloridas ou P&B)", "Cópias, fax, scan", "Impressão A4/A3", "Plotagem de projetos", "Banners", "Lonas para placas", "Panfletos", "Apostilas", "Relatórios", "Formulários", "Impressos em geral", "Revelação de foto"],
+    },
+    {
+      title: "Produção de peças gráficas, publicidade e comunicação visual",
+      list: ["Adesivos (refletivo, perfurado, leitoso e transparente)", "Blocos sem carbono", "Bolacha para CD (colorido)", "Calendários", "Cardápios", "Cartão de visita", "Cartões de ponto", "Convites em geral", "Envelopes personalizados", "Imãs", "Marca página", "Marcadores de mesa", "Pasta reta", "PVC adesivado", "Receituários", "Tags", "Timbrados"],
+    },
+    {
+      title: "Itens complementares, montagem e finalizações profissionais",
+      list: ["Acabamento", "Encadernação", "Plastificação", "Bolsa plástica", "Carimbos automáticos", "Cordões", "Crachás em PVC", "Suporte para banner", "Suporte para crachá", "Presilhas", "Gravação e/ou cópias de CD/DVD", "Tinta para carimbo"],
+    },
+  ];
 
   return (
     <main>
-      <BoxedSection className="relative pb-6 lg:p-0">
-        <div className="container h-full">
-          <div className="grid h-full grid-rows-1 items-center gap-x-10 md:grid-cols-9">
-            <div className="flex h-full flex-col justify-center space-y-10 md:col-span-4 lg:row-span-2 lg:py-24">
-              <div>
-                <h1 className="title-lg inline align-middle leading-[1.2]">Outsourcing inteligente, operação eficiente</h1>
-                <Image className="bg-primary ml-3 inline-block rounded-4xl align-middle" src="/images/pagina-inicial/hero-avatars.webp" alt="..." width={137} height={56} />
-              </div>
-              <div className="h-lg:absolute bottom-14 max-w-64 space-y-6 max-lg:static!">
-                <p className="text-secondary text-lg text-balance">
-                  Reduza custos e otimize a sua operação com <strong>aluguel de equipamentos e tecnologia</strong>.
-                </p>
-                <Button asChild>
-                  <Link href="#solucoes">Ver soluções</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="relative grid h-full items-center md:col-span-5 lg:row-span-2">
-              <Image className="max-lg:-mb-12" src="/images/pagina-inicial/m.webp" alt="M em 3D" width={866} height={698} />
-            </div>
-            <div className="max-lg:hidden lg:col-span-4"></div>
-            <div className="relative h-full md:col-span-9 lg:col-span-5">
-              <div className="h-lg:absolute bottom-8 grid gap-2 max-lg:static! md:grid-cols-2">
-                <div className="from-neutral-0/15 to-neutral-0/5 relative flex flex-col gap-4 overflow-hidden rounded-lg bg-linear-to-t p-6 shadow backdrop-blur-xl">
-                  <p className="title-lg text-brand-primary flex-1">+500</p>
-                  <p className="subheading">Clientes atendidos na região de Linhares/ES</p>
-                </div>
-                <div className="bg-brand-secondary relative overflow-hidden rounded-lg p-6 pr-24">
-                  <h3 className="subheading mb-8">Conheça o caso de sucesso do Hospital Rio Doce</h3>
-                  <Button className="relative z-10 size-9 rounded-full p-0" size="icon" asChild>
-                    <Link href="/casos-de-sucesso/hospital">
-                      <ArrowUpRight />
+      <section className="relative grid sm:min-h-screen">
+        <div className="bg-primary border-primary relative grid items-center overflow-hidden border pt-32 pb-24 shadow-2xs sm:m-8 lg:p-0 lg:pt-40">
+          <div className="container h-full">
+            <div className="grid h-full grid-rows-1 items-center gap-x-10">
+              <div className="flex h-full flex-col space-y-10">
+                <GraficaRapida />
+                <div className="h-lg:absolute bottom-14 max-w-[60ch] space-y-6 max-lg:static!">
+                  <p className="subheading-lg text-balance">Impressão com qualidade profissional e agilidade em Linhares (ES) e região</p>
+                  <Button asChild>
+                    <Link href={quoteWhatsAppUrl} target="_blank" rel="noopener noreferrer">
+                      Solicitar orçamento
                     </Link>
                   </Button>
-                  <Image className="absolute right-0 bottom-0 h-full object-contain object-right" src="/images/pagina-inicial/hero-case-hospital.webp" alt="..." width={380} height={459} />
                 </div>
+                <Image className="relative -right-9 object-contain object-right transition-transform hover:rotate-6 sm:absolute sm:bottom-[10%] sm:h-[50%] sm:w-[55%]" src="/hand.webp" alt="" width={960} height={509} />
               </div>
             </div>
           </div>
         </div>
-      </BoxedSection>
 
-      <ContentWithDivider>
-        <ContentWithDividerContent>
-          <p className="text-lg">
-            Com <strong>mais de 40 anos de experiência</strong>, a Mil Cópias Tecnologia oferece soluções completas de outsourcing com aluguel de equipamentos e tecnologia sob demanda para o seu negócio reduzir custos operacionais e crescer com segurança, flexibilidade e eficiência.
-          </p>
-        </ContentWithDividerContent>
-      </ContentWithDivider>
+        <div className="absolute flex h-8 w-full items-center justify-center text-center text-xs max-sm:hidden">
+          <span>af-header-milcopias_grafica_rapida.pdf</span>
+        </div>
 
-      <section className="overflow-hidden pt-24">
-        <Customers />
+        <div className="absolute top-0 left-8 h-7 w-px bg-neutral-900 max-sm:hidden"></div>
+        <div className="absolute top-8 left-0 h-px w-7 bg-neutral-900 max-sm:hidden"></div>
+        <div className="absolute bottom-0 left-8 h-7 w-px bg-neutral-900 max-sm:hidden"></div>
+        <div className="absolute bottom-8 left-0 h-px w-7 bg-neutral-900 max-sm:hidden"></div>
+        <div className="absolute top-0 right-8 h-7 w-px bg-neutral-900 max-sm:hidden"></div>
+        <div className="absolute top-8 right-0 h-px w-7 bg-neutral-900 max-sm:hidden"></div>
+        <div className="absolute right-8 bottom-0 h-7 w-px bg-neutral-900 max-sm:hidden"></div>
+        <div className="absolute right-0 bottom-8 h-px w-7 bg-neutral-900 max-sm:hidden"></div>
       </section>
 
-      <section className="pt-24" id="solucoes">
+      <section className="py-24">
+        <div className="container">
+          <div className="grid gap-x-16 gap-y-10 md:grid-cols-13">
+            <div className="py-4 max-md:hidden md:col-span-4">
+              <hr className="border-brand-primary border-t-[1.5px]" />
+            </div>
+            <div className="space-y-4 md:col-span-9">
+              <div className="text-secondary space-y-4 text-xl">
+                <p>
+                  Com <strong>mais de 40 anos de experiência</strong>, a Mil Cópias Gráfica Rápida possui uma estrutura para atender todas as suas necessidades de impressão e comunicação visual. Garantimos uma entrega ágil, qualidade consistente e soluções completas para materiais gráficos personalizados.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-primary relative pt-24 md:pb-24" id="tipos-de-materiais">
         <div className="container">
           <div className="space-y-10">
             <h2 className="flex flex-col gap-2 text-center">
-              <span className="uppertitle">Nossas soluções</span>
-              <span className="heading-lg">Aluguel de equipamentos e tecnologia</span>
+              <span className="uppertitle text-secondary">Tipos de materiais</span>
+              <span className="heading-lg text-brand-primary">Materiais impressos e personalizados</span>
             </h2>
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map((category) => (
-                <ServiceCategoryCard key={category.id} {...category} />
+            <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {service.map((service) => (
+                <li className="space-y-4" key={service.title}>
+                  <h3 className="text-xl font-semibold">{service.title}</h3>
+                  <ul className="space-y-2">
+                    {service.list.map((item) => (
+                      <li className="flex gap-2" key={item}>
+                        <CheckCircle className="icon-brand-secondary size-5" />
+                        <p>{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
               ))}
             </ul>
+            <div className="max-sm:text-center lg:text-center">
+              <Button size="lg" asChild>
+                <Link href={quoteWhatsAppUrl} target="_blank" rel="noopener noreferrer">
+                  <WhatsApp />
+                  Solicitar orçamento
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
+
+        <Image className="right-0 bottom-0 ml-auto md:absolute" src="/servicos.webp" alt="" width={310} height={300} />
       </section>
 
-      <section className="pt-24">
+      <section className="bg-secondary pt-24">
         <div className="container">
-          <div className="space-y-10">
-            <h2 className="flex flex-col gap-2 text-center">
-              <span className="uppertitle">Benefícios</span>
-              <span className="heading-lg">Por que escolher a Mil Cópias Tecnologia?</span>
-            </h2>
-            <ul className="text-secondary flex flex-wrap justify-center gap-8 text-center">
-              <li className="flex-1 basis-36 space-y-2 sm:basis-[165px] md:max-w-[165px]">
-                <PiggyBank className="icon-brand-tertiary mx-auto size-16 stroke-1" />
-                <p>Sem custo inicial em equipamentos</p>
-              </li>
-              <li className="flex-1 basis-36 space-y-2 sm:basis-[165px] md:max-w-[165px]">
-                <Headset className="icon-brand-tertiary mx-auto size-16 stroke-1" />
-                <p>Manutenção e suporte contínuo</p>
-              </li>
-              <li className="flex-1 basis-36 space-y-2 sm:basis-[165px] md:max-w-[165px]">
-                <ChartPie className="icon-brand-tertiary mx-auto size-16 stroke-1" />
-                <p>Relatórios e indicadores mensais</p>
-              </li>
-              <li className="flex-1 basis-36 space-y-2 sm:basis-[165px] md:max-w-[165px]">
-                <RotateCcw className="icon-brand-tertiary mx-auto size-16 stroke-1" />
-                <p>Equipamentos sempre atualizados</p>
-              </li>
-              <li className="flex-1 basis-36 space-y-2 sm:basis-[165px] md:max-w-[165px]">
-                <HandCoins className="icon-brand-tertiary mx-auto size-16 stroke-1" />
-                <p>Previsibilidade de custos</p>
-              </li>
-              <li className="flex-1 basis-36 space-y-2 sm:basis-[165px] md:max-w-[165px]">
-                <Handshake className="icon-brand-tertiary mx-auto size-16 stroke-1" />
-                <p>Mais foco no que importa: o seu negócio</p>
-              </li>
-            </ul>
+          <div className="bg-brand-secondary grid overflow-hidden rounded-2xl md:grid-cols-2">
+            <div className="space-y-6 px-6 py-10 md:p-8 lg:p-16">
+              <h2 className="heading text-on-brand-primary">Garanta a qualidade e agilidade da sua impressão com a nossa Gráfica Rápida</h2>
+              <Button size="sm" asChild>
+                <Link href={quoteWhatsAppUrl} target="_blank" rel="noopener noreferrer">
+                  <WhatsApp />
+                  Solicitar orçamento
+                </Link>
+              </Button>
+            </div>
+            <div>
+              <Image className="h-full object-contain object-bottom-right max-lg:pl-10" src="/cta.webp" alt="" width={768} height={370} />
+            </div>
           </div>
         </div>
       </section>
 
-      <CallToAction />
+      <section className="py-24">
+        <div className="container">
+          <div className="grid gap-x-16 gap-y-10 md:grid-cols-2">
+            <div className="space-y-6">
+              <h2 className="heading">Tire suas dúvidas</h2>
+              <p>Preencha o formulário abaixo com seus dados e a descrição do serviço desejado ou dúvida. Em breve, entraremos em contato com você.</p>
+              <Button asChild>
+                <Link href={contactWhatsAppUrl} target="_blank" rel="noopener noreferrer">
+                  <WhatsApp />
+                  Entrar em contato
+                </Link>
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <h2 className="subheading">Contato e informações</h2>
+              <hr className="border-brand-secondary w-16" />
+              <ul className="text-secondary -ml-3">
+                <li>
+                  <Button variant="ghost" size="sm">
+                    WhatsApp
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="ghost" size="sm" asChild>
+                    <Link href="mailto:contato@milcopias.com.br" target="_blank" rel="noopener noreferrer">
+                      contato@milcopias.com.br
+                    </Link>
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="ghost" size="sm" asChild>
+                    <Link href="tel:+552733727171" target="_blank" rel="noopener noreferrer">
+                      (27) 3372-7171
+                    </Link>
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="ghost" size="sm" asChild>
+                    <Link href="https://maps.app.goo.gl/9gvBDJ5S6juLyLs69" target="_blank" rel="noopener noreferrer">
+                      Av. Augusto de Carvalho, 1435 Centro, Linhares/ES CEP: 29900-153
+                    </Link>
+                  </Button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
