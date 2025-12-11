@@ -33,7 +33,10 @@ export async function Footer() {
             <p>A Mil Cópias Gráfica Rápida tem mais de 40 anos de experiência atendendo todas necessidades de impressão, comunicação visual e materiais gráficos personalizados.</p>
             <p className="text-sm">
               Todos os direitos reservados. © {getCurrentYear()} Mil Cópias. <br />
-              Site criado por Jogajunto
+              Site criado por{" "}
+              <Link className="hover:text-primary underline transition-colors duration-300" href="https://jogajunto.co/" target="_blank" rel="noopener">
+                Jogajunto
+              </Link>
             </p>
           </div>
           <Social />
