@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Button } from "@/components/Button";
-import { contactWhatsAppUrl, quoteWhatsAppUrl } from "@/utilities/generate-whatsapp-link";
+import { quoteWhatsAppUrl } from "@/utilities/generate-whatsapp-link";
 import { MilCopias } from "../MilCopias";
 import { WhatsApp } from "../SocialIcon";
 
@@ -17,18 +17,6 @@ export async function Header() {
             <MilCopias className="w-full max-w-[234px]" />
             <nav className="shrink-0 max-md:hidden">
               <ul className="flex gap-2">
-                <li className="mb-2 lg:mb-0">
-                  <Button size="md" variant="ghost" asChild>
-                    <Link href="#tipos-de-materiais">Tipos de materiais</Link>
-                  </Button>
-                </li>
-                <li className="mb-2 lg:mb-0">
-                  <Button size="md" variant="outline" asChild>
-                    <Link href={contactWhatsAppUrl} target="_blank" rel="noopener noreferrer">
-                      Contato
-                    </Link>
-                  </Button>
-                </li>
                 <li className="mb-2 lg:mb-0">
                   <Button size="md" asChild>
                     <Link href={quoteWhatsAppUrl} target="_blank" rel="noopener noreferrer">
