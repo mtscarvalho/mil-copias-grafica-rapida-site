@@ -457,6 +457,8 @@
   --semantic-color-text-warning-tertiary: var(--color-warning-600);
 }
 
+@custom-variant hover (&:hover);
+
 @utility bg-* {
   background-color: --value(--semantic-color-background-*);
   background-color: --value(--color-*);
