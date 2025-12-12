@@ -20,8 +20,9 @@ export function generateMetadata() {
 export default async function Page() {
   const service = [
     {
-      title: "Serviços de impressão, cópias e finalização de documentos",
+      title: "Serviços de impressão",
       list: [
+        "Adesivos (refletivo, perfurado, leitoso e transparente)",
         "Apostilas",
         "Banners",
         "Blocos sem carbono",
@@ -29,10 +30,13 @@ export default async function Page() {
         "Cardápios",
         "Cartão de visita",
         "Cartões de ponto",
+        "Confecção de troféus e placas em acrílico",
         "Convites em geral",
         "Cópias e scan",
         "Envelopes personalizados",
+        "Imãs",
         "Impressão A4/A3",
+        "Impressão de adesivos em alto relevo (DTF)",
         "Impressões e cópias a laser (coloridas ou P&B)",
         "Impressos em geral",
         "Lonas e backdrop",
@@ -41,6 +45,7 @@ export default async function Page() {
         "Panfletos",
         "Pasta reta",
         "Plotagem de projetos",
+        "PVC adesivado",
         "Receituários",
         "Revelação de foto",
         "Tags",
@@ -48,11 +53,7 @@ export default async function Page() {
       ],
     },
     {
-      title: "Produção de peças gráficas, publicidade e comunicação visual",
-      list: ["Adesivos (refletivo, perfurado, leitoso e transparente)", "Confecção de troféus e placas em acrílico", "Imãs", "Impressão de adesivos em alto relevo (DTF)", "PVC adesivado"],
-    },
-    {
-      title: "Itens complementares, montagem e finalizações profissionais",
+      title: "Itens complementares",
       list: ["Acabamento", "Bolsa plástica", "Carimbos automáticos", "Cordões", "Crachás em PVC", "Encadernação", "Plastificação", "Presilhas", "Suporte para banner", "Suporte para crachá", "Tinta para carimbo"],
     },
   ];
@@ -118,19 +119,28 @@ export default async function Page() {
               <span className="heading-lg text-brand-primary">Materiais impressos e personalizados</span>
             </h2>
             <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {service.map((service) => (
-                <li className="space-y-4" key={service.title}>
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <ul className="space-y-2">
-                    {service.list.map((item) => (
-                      <li className="flex gap-2" key={item}>
-                        <CheckCircle className="icon-brand-secondary size-5" />
-                        <p>{item}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
+              <li className="col-span-2 space-y-4">
+                <h3 className="text-xl font-semibold">{service[0].title}</h3>
+                <ul className="columns-2 space-y-2">
+                  {service[0].list.map((item) => (
+                    <li className="flex gap-2" key={item}>
+                      <CheckCircle className="icon-brand-secondary size-5" />
+                      <p>{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li className="space-y-4">
+                <h3 className="text-xl font-semibold">{service[1].title}</h3>
+                <ul className="space-y-2">
+                  {service[1].list.map((item) => (
+                    <li className="flex gap-2" key={item}>
+                      <CheckCircle className="icon-brand-secondary size-5" />
+                      <p>{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </li>
             </ul>
             <div className="max-sm:text-center lg:text-center">
               <Button size="lg" asChild>
@@ -184,7 +194,7 @@ export default async function Page() {
               <ul className="text-secondary -ml-3">
                 <li>
                   <Button variant="ghost" size="sm">
-                    WhatsApp
+                    <Link href={quoteWhatsAppUrl}>WhatsApp</Link>
                   </Button>
                 </li>
                 <li>
