@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <NextTopLoader color="var(--color-red-700)" />
         <Header />
         {children}
-        {process.env.NEXT_PUBLIC_ENV === "production" && <GoogleTagManager gtmId="GTM-" />}
+        {process.env.NEXT_PUBLIC_ENV === "production" && <GoogleTagManager gtmId="GTM-T4ZXHGJH" />}
         <Footer />
       </body>
     </html>
