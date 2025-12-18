@@ -40,4 +40,5 @@ export default withSentryConfig(nextConfig, {
     // OTIMIZAÇÃO DE ESPAÇO: Limpa os mapas do container após o upload
     deleteSourcemapsAfterUpload: true,
   },
+  telemetry: false,
 });
