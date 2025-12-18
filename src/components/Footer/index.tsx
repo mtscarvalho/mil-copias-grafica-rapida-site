@@ -16,8 +16,8 @@ const MENU_INSTITUTIONAL = [
 const MENU_CONTACT = [
   { label: "Tire suas dúvidas", href: contactWhatsAppUrl, external: true },
   { label: "Trabalhe conosco", href: careerWhatsAppUrl, external: true },
-  { label: "graficarapida@milcopias.com.br", href: "/trabalhe-conosco/", external: true },
-  { label: "(27) 3372-7171", href: "mailto:contato@milcopias.com.br", external: true },
+  { label: "graficarapida@milcopias.com.br", href: "mailto:graficarapida@milcopias.com.br", external: true },
+  { label: "(27) 3372-7171", href: "tel:+552733727171", external: true },
   { label: "Av. Augusto de Carvalho, 1435 Centro, Linhares/ES CEP: 29900-153", href: "https://maps.app.goo.gl/9gvBDJ5S6juLyLs69", external: true },
 ];
 
